@@ -6,7 +6,9 @@ from analytics import (
     annualized_rets,
     annualized_volatility,
     sharpe_ratio,
-    calculate_drawdown) 
+    calculate_drawdown,
+    var_historic,
+    cvar_historic) 
 
 def main():
     tickers= ['SPY', 'GLD', 'TLT', 'VNQ']
@@ -19,26 +21,32 @@ def main():
 
     dd_data = calculate_drawdown(rets)
     max_dd = dd_data["max_drawdown"]
+    var_95 = var_historic(rets, 0.05)
+    cvar_95 = cvar_historic(rets, 0.05)
 
     summary = pd.DataFrame({
         "CAGR" : cagr,
         "Annualized Volatility" : vol,
         "Sharpe Ratio (Rf=2%)" : sharpe,
-        "Max Drawdown" : max_dd
+        "Max Drawdown" : max_dd,
+        "Monthly VaR (95%)" : var_95,
+        "Monthly CVaR (95%)" : cvar_95
     })
 
     summary_formatted = pd.DataFrame({
         "CAGR" : summary["CAGR"].apply(lambda x: f"{x:.2%}"),
         "Annualized Volatility" : summary["Annualized Volatility"].apply(lambda x: f"{x:.2%}"),
         "Sharpe Ratio (Rf=2%)" : summary["Sharpe Ratio (Rf=2%)"].round(2),
-        "Max Drawdown" : summary["Max Drawdown"].apply(lambda x: f"{x:.2%}")
+        "Max Drawdown" : summary["Max Drawdown"].apply(lambda x: f"{x:.2%}"),
+        "Monthly VaR (95%)" : summary["Monthly VaR (95%)"].apply(lambda x: f"{x:.2%}"),
+        "Monthly CVaR (95%)" : summary["Monthly CVaR (95%)"].apply(lambda x: f"{x:.2%}")
     })
 
-    print("=" * 74)
+    print("=" * 60)
     print("       MULTI-ASSET RISK-RETURN SUMMARY (2005 - 2025)")
-    print("=" * 74)
+    print("=" * 60)
     print(summary_formatted)
-    print("="*74 + "\n")
+    print("="*60 + "\n")
 
 if __name__ == "__main__":
     main()

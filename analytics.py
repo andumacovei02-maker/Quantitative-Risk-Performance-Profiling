@@ -1,4 +1,4 @@
- import pandas as pd
+import pandas as pd
 import numpy as np
 
 def compute_rets(prices: pd.DataFrame) -> pd.DataFrame:
@@ -28,3 +28,10 @@ def calculate_drawdown(rets: pd.DataFrame) -> dict:
         "drawdown" : drawdown,
         "max_drawdown" : max_drawdown 
     }
+
+def var_historic(rets: pd.DataFrame, level : float = 0.05) -> pd.Series:
+    return -rets.quantile(level)
+
+def cvar_historic(rets: pd.DataFrame, level : float = 0.05) -> pd.Series:
+    var_threshold = -var_historic(rets, 0.05)
+    return -rets[rets.le(var_threshold)].mean()

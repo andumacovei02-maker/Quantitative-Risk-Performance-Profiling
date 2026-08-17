@@ -9,6 +9,7 @@ A python module for historical financial data analysis, risk metrics computation
 4. Annualized Volatility calculation scaled by the square root of periods
 5. Sharpe Ratio computation relative to a customizable Risk-Free Rate
 6. Cumulative Peak tracking and Maximum Drawdown analysis
+7. Monthly VaR and CVaR measurement at 95% confidence level 
 
 ### Analysed Assets (2005-2025)
 1. SPY - US Equities (S&P500)
@@ -18,7 +19,7 @@ A python module for historical financial data analysis, risk metrics computation
 
 ### Project Structure
 1. `data_loader.py` - Fetches adjusted monthly closing prices
-2. `analytics.py` - Vectorized Financial formulas
+2. `analytics.py` - Vectorized financial formulas
 3. `main.py` - Pipeline execution and results summary
 
 ### How to Run
