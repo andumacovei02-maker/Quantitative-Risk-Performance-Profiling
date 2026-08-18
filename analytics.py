@@ -17,8 +17,8 @@ def sharpe_ratio(rets: pd.DataFrame, risk_free_rate : float = 0.0, periods_per_y
     vol = annualized_volatility(rets, periods_per_year)
     return (cagr-risk_free_rate)/vol
 
-def calculate_drawdown(rets: pd.DataFrame) -> dict:
-    wealth_index = 1000 * (1 + rets).cumprod()
+def calculate_drawdown(rets: pd.DataFrame, initial_investment: int  = 1000) -> dict:
+    wealth_index = initial_investment * (1 + rets).cumprod()
     previous_peaks = wealth_index.cummax()
     drawdown = (wealth_index - previous_peaks) / previous_peaks
     max_drawdown = drawdown.min()
@@ -33,5 +33,5 @@ def var_historic(rets: pd.DataFrame, level : float = 0.05) -> pd.Series:
     return -rets.quantile(level)
 
 def cvar_historic(rets: pd.DataFrame, level : float = 0.05) -> pd.Series:
-    var_threshold = -var_historic(rets, 0.05)
+    var_threshold = -var_historic(rets, level)
     return -rets[rets.le(var_threshold)].mean()

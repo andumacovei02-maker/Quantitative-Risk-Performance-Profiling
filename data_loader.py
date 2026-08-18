@@ -2,11 +2,12 @@ import numpy as np
 import pandas as pd
 import yfinance as yf
 
-def fetch_data(tickers):
+def fetch_data(tickers: list, data_range: tuple, interval: str = "1mo") -> pd.DataFrame:
+    start_date, end_date = data_range
     data = yf.download(tickers=tickers,
-                     start ="2005-01-01", 
-                     end ="2025-12-31",
-                     interval="1mo",
+                     start =start_date, 
+                     end =end_date,
+                     interval=interval,
                      auto_adjust=True) 
 
     prices = data['Close'].copy() 
