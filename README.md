@@ -30,6 +30,7 @@ The default setup analyzes 4 main asset classes from 2005 to 2025
 6. `main.py` - Pipeline execution and results summary
 
 ### Example Output
+```
   MULTI-ASSET RISK-RETURN SUMMARY (2005 - 2025) 
 ╒══════════╤════════╤═════════════════════════╤════════════════════════╤════════════════╤═════════════════════╤══════════════════════╕
 │ Ticker   │ CAGR   │ Annualized Volatility   │   Sharpe Ratio (Rf=2%) │ Max Drawdown   │ Monthly VaR (95%)   │ Monthly CVaR (95%)   │
@@ -42,7 +43,7 @@ The default setup analyzes 4 main asset classes from 2005 to 2025
 ├──────────┼────────┼─────────────────────────┼────────────────────────┼────────────────┼─────────────────────┼──────────────────────┤
 │ VNQ      │ 7.10%  │ 21.63%                  │                   0.24 │ -68.30%        │ 8.11%               │ 14.60%               │
 ╘══════════╧════════╧═════════════════════════╧════════════════════════╧════════════════╧═════════════════════╧══════════════════════╛
-
+```
 ### Sample Visualizations
 ![Wealth Index](assets/wealth_index.png)
 ![Drawdowns](assets/drawdowns.png)
