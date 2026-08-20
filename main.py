@@ -1,4 +1,3 @@
-from tabulate import tabulate
 from data_loader import fetch_data
 from plots import (plot_wealth_index, plot_drawdown, plot_dynamic_var_cvar)
 from utils import risk_return_summary
