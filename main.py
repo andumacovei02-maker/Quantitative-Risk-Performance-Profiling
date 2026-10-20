@@ -1,7 +1,6 @@
 from data_loader import fetch_data
 from plots import (plot_wealth_index, plot_drawdown, plot_dynamic_var_cvar)
 from utils import risk_return_summary
-from optimizer import cov_matrix
 from analytics import (
     compute_rets,
     annualized_rets,
@@ -40,7 +39,6 @@ def main():
     plot_wealth_index(dd_data["wealth_index"])
     plot_drawdown(dd_data["drawdown"])
     plot_dynamic_var_cvar(rets, var, cvar) 
-    cov_matrix(rets,PERIODS_PER_YEAR)
 
 if __name__ == "__main__":
     main()
