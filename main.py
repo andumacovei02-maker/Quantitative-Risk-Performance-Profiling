@@ -1,6 +1,7 @@
 from data_loader import fetch_data
 from plots import (plot_wealth_index, plot_drawdown, plot_dynamic_var_cvar)
 from utils import risk_return_summary
+from optimizer import cov_matrix
 from analytics import (
     compute_rets,
     annualized_rets,
@@ -23,7 +24,6 @@ if INTERVAL not in INTERVAL_MAPPING:
     raise ValueError(f"Interval not supported. Use only from: {list(INTERVAL_MAPPING.keys())}")
 PREFIX, PERIODS_PER_YEAR = INTERVAL_MAPPING[INTERVAL]
 
-
 def main():
     prices = fetch_data(TICKERS, DATA_RANGE, INTERVAL)
     rets = compute_rets(prices)
@@ -40,6 +40,7 @@ def main():
     plot_wealth_index(dd_data["wealth_index"])
     plot_drawdown(dd_data["drawdown"])
     plot_dynamic_var_cvar(rets, var, cvar) 
+    cov_matrix(rets,PERIODS_PER_YEAR)
 
 if __name__ == "__main__":
     main()

@@ -13,9 +13,11 @@ def annualized_volatility(rets: pd.DataFrame, periods_per_year: int = 12) -> pd.
     return rets.std()*(np.sqrt(periods_per_year))
 
 def sharpe_ratio(rets: pd.DataFrame, risk_free_rate : float = 0.0, periods_per_year : int = 12) -> pd.Series:
-    cagr = annualized_rets(rets, periods_per_year)
-    vol = annualized_volatility(rets, periods_per_year)
-    return (cagr-risk_free_rate)/vol
+    rf_m = (1 + risk_free_rate) ** (1 / periods_per_year) - 1
+    excess = rets - rf_m
+    vol = annualized_volatility(rets ,periods_per_year)
+    return excess.mean()* periods_per_year / vol
+    
 
 def calculate_drawdown(rets: pd.DataFrame, initial_investment: int  = 1000) -> dict:
     wealth_index = initial_investment * (1 + rets).cumprod()
