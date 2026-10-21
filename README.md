@@ -1,6 +1,6 @@
 # Quantitative Risk & Performance Profiling
 
-A Python module for historical financial data analysis, risk metrics computation, and performance evaluation across multi-asset portfolios.
+A Python module for historical financial data analysis, risk metrics computation, and performance evaluation for each asset in a multi-asset universe.
 
 The pipeline is fully dynamic and highly customizable: it automatically scales for any number of assets or timeframes, and lets you easily adjust core metrics like the Risk-Free Rate, Confidence level and periods per year.
 
